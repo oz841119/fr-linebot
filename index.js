@@ -15,8 +15,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
     Promise
       .all(req.body.events.map(handleEvent))
       .then((result) => {
-        console.log(result);
-        res.json(123)
+        res.json(result)
       })
       .catch((err) => {
         console.error(err);
@@ -32,7 +31,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
     }
   
     // create a echoing text message
-    const echo = { type: 'text', text: event.message.text };
+    const echo = { type: 'text', text: `${new Date} 紀錄完成` };
   
     // use reply API
     return client.replyMessage(event.replyToken, echo);
