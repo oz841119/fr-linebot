@@ -1,8 +1,12 @@
 require('dotenv').config();
 const line = require('@line/bot-sdk');
 const express = require('express');
-const dayjs = require('dayjs')
 const addMessage = require('./db/write/addMessage')
+const dayjs = require('dayjs')
+const utc = require('dayjs/plugin/timezone')
+const timezone = require('dayjs/plugin/utc')
+dayjs.extend(timezone)
+dayjs.extend(utc)
 
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
@@ -21,7 +25,7 @@ app.post('/line_bot', line.middleware(config), async (req, res) => {
 
 function handleEvent(event) {
   if (event.type !== 'message' || event.message.type !== 'text') return Promise.resolve(null);
-  const echo = { type: 'text', text: `${dayjs().format('YYYY-MM-DD')} 紀錄完成。未來可以在網站上重新回顧訊息並編入紀錄` };
+  const echo = { type: 'text', text: `${dayjs().tz('Asia/Taipei').format('YYYY-MM-DD')} 紀錄完成。未來可以在網站上重新回顧訊息並編入紀錄` };
   return lineClient.replyMessage(event.replyToken, echo);
 }
 
