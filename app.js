@@ -12,10 +12,11 @@ const lineClient = new line.Client(config);
 const app = express();
 
 app.post('/line_bot', line.middleware(config), async (req, res) => {
+  res.send('ok')
+  if(req.body.events.length === 0) return
   const event = req.body.events[0]
   const lineResult = await handleEvent(event)
   await addMessage(event.source.userId, event.message.text)
-  res.json(lineResult)
 });
 
 function handleEvent(event) {
