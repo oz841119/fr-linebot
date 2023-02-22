@@ -1,7 +1,9 @@
 const dbClient = require('../db.js')
 const dayjs = require('dayjs')
-const timezone = require('dayjs/plugin/timezone')
+const utc = require('dayjs/plugin/timezone')
+const timezone = require('dayjs/plugin/utc')
 dayjs.extend(timezone)
+dayjs.extend(utc)
 
 async function writeDb(lineUserId, message) {
   await dbClient.connect()
