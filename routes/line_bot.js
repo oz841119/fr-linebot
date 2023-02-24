@@ -17,7 +17,7 @@ const lineClient = new line.Client(config);
 function handleEvent(event) {
     if (event.type !== 'message' || event.message.type !== 'text') return Promise.resolve(null);
     const echo = { type: 'text', text: `${dayjs().tz('Asia/Taipei').format('YYYY-MM-DD')} 紀錄完成。${createEncourage()}` };
-    return lineClient.replyMessage(event.replyToken, echo);
+    return lineClient.replyMessage(event.replyToken, echo)
 }
 
 function createEncourage() {
@@ -27,12 +27,12 @@ function createEncourage() {
 }
 
 router.post('/', line.middleware(config), async (req, res) => {
-    res.send('ok')
     if(req.body.events.length === 0) return
     const event = req.body.events[0]
     const lineResult = await handleEvent(event)
+    res.json(lineResult)
     await addMessage(event.source.userId, event.message.text)
+    //  0225 MongoDBd error connection establishment was cancelled
 });
-
 
 module.exports = router;
