@@ -32,7 +32,7 @@ router.post('/', line.middleware(config), async (req, res) => {
     const lineResult = await handleEvent(event)
     res.json(lineResult)
     await addMessage(event.source.userId, event.message.text)
-    //  0225 MongoDBd error connection establishment was cancelled
+    //  0225 MongoDBd error connection establishment was cancelled (pending fix)
 });
 
 module.exports = router;
