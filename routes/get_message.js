@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const getAllMessage = require('../db/read/getAllMessage')
 
-router.get('/', (req, res) => {
-    res.send('You got message')
+router.get('/', async (req, res) => {
+    const allMes = await getAllMessage()
+    res.send(allMes)
 })
 
 module.exports = router;
