@@ -16,6 +16,7 @@ const lineClient = new line.Client(config);
 
 function handleEvent(event) {
     if (event.type !== 'message' || event.message.type !== 'text') return Promise.resolve(null);
+    if(event.message.text === 'user') return lineClient.replyMessage(event.replyToken, {type: 'text', text: event.source.userId})
     const echo = { type: 'text', text: `${dayjs().tz('Asia/Taipei').format('YYYY-MM-DD')} 紀錄完成。${createEncourage()}` };
     return lineClient.replyMessage(event.replyToken, echo)
 }
