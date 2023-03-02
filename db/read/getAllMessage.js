@@ -10,10 +10,4 @@ function getAllMessage(lineUserId, message) {
     resolve(cursor)
   })
 }
-
-process.on('SIGINT', function() {
-  console.log('結束DB連線');
-  dbClient.close()
-  process.exit(0);
-});
 module.exports = getAllMessage
