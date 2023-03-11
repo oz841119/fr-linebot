@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const addUserAlias = require('../db/write/addUserAlias')
+const addUserAlias = require('../controllers/addUserAlias')
 
-router.patch('/', async (req, res) => {
+const PATH = '/create_alias'
+router.patch(PATH, async (req, res) => {
     const params = req.body
     const lineUserId = req.headers.authorization
     if(params.alias === '') return res.status(400).send('未填寫別名')

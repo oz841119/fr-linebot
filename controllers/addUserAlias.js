@@ -1,4 +1,4 @@
-const dbClient = require('../db.js')
+const dbClient = require('../db/db.js')
 const db = dbClient.db("users")
 
 async function writeDb(lineUserId, alias) {

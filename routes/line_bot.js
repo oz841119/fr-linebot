@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const line = require('@line/bot-sdk');
-const addMessage = require('../db/write/addMessage')
+const addMessage = require('../controllers/addMessage')
 const dayjs = require('dayjs')
 const utc = require('dayjs/plugin/timezone')
 const timezone = require('dayjs/plugin/utc')
@@ -27,7 +27,8 @@ function createEncourage() {
     return sentence[random]
 }
 
-router.post('/', line.middleware(config), async (req, res) => {
+const PATH = '/line_bot'
+router.post(PATH, line.middleware(config), async (req, res) => {
     if(req.body.events.length === 0) return
     const event = req.body.events[0]
     const lineResult = await handleEvent(event)

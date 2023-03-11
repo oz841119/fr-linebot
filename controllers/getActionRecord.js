@@ -1,4 +1,4 @@
-const dbClient = require('../db.js')
+const dbClient = require('../db/db.js')
 const db = dbClient.db("line_user_action_record")
 
 function getActionRecord(lineUserId) {

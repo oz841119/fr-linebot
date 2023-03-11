@@ -1,5 +1,5 @@
 require('dotenv').config();
-const dbClient = require('../db.js')
+const dbClient = require('../db/db.js')
 const db = dbClient.db("line_bot")
 
 function getUserMessage(lineUserId) {
