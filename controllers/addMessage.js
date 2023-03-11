@@ -10,7 +10,7 @@ const db = dbClient.db("fitness_record_db")
 async function writeDb(lineUserId, message) {
   await dbClient.connect()
   const lineMesssageColl = await db.collection('line_message');
-  await lineMesssageColl.insertOne({time: new Date(), line_user_id: lineUserId, message: message})
+  await lineMesssageColl.insertOne({timestamp: new Date().getTime(), line_user_id: lineUserId, message: message})
   Promise.resolve()
 }
 module.exports = writeDb
