@@ -29,6 +29,7 @@ function createEncourage() {
 
 const PATH = '/line_bot'
 router.post(PATH, line.middleware(config), async (req, res) => {
+    console.log(123);
     if(req.body.events.length === 0) return
     const event = req.body.events[0]
     const lineResult = await handleEvent(event)

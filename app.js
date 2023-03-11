@@ -2,11 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors')
 const app = express();
+const lineBot = require('./lineBot/lineBot')
 const router = require('./routes/router')
 const dbClient = require('./db/db.js')
 const port = process.env.PORT || 3333;
 
 app.use(cors());
+app.use(lineBot)
 app.use(express.json());
 app.use(router)
 
