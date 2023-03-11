@@ -1,9 +1,9 @@
 const dbClient = require('../db/db.js')
-const db = dbClient.db("users")
+const db = dbClient.db("line_user_action_record")
 
 async function writeDb(lineUserId, alias) {
   await dbClient.connect()
-  const lineMesssageColl = await db.collection('line_users')
+  const lineMesssageColl = await db.collection('users')
   const query = {line_user_id: lineUserId}
   const update = {
     $set: {
