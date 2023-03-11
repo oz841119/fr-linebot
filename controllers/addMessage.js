@@ -1,4 +1,4 @@
-const dbClient = require('../db.js')
+const dbClient = require('../db/db.js')
 const dayjs = require('dayjs')
 const utc = require('dayjs/plugin/timezone')
 const timezone = require('dayjs/plugin/utc')
