@@ -1,5 +1,5 @@
 const dbClient = require('../db/db.js')
-const db = dbClient.db("line_user_action_record")
+const db = dbClient.db("fitness_record_db")
 
 async function writeDb(lineUserId, alias) {
   await dbClient.connect()
